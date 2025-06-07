@@ -19,9 +19,18 @@ var logName = function(lang1, lang2) {
 
 var logPersonName = logName.bind(person);
 logPersonName('en');
+// Logged: John Doe
+// Arguments: en undefined
+// -----------
 
 logName.call(person, 'en', 'es');
+// Logged: John Doe
+// Arguments: en es
+// -----------
 logName.apply(person, ['en', 'es']);
+// Logged: John Doe
+// Arguments: en es
+// -----------
 
 (function(lang1, lang2) {
 
@@ -30,6 +39,9 @@ logName.apply(person, ['en', 'es']);
     console.log('-----------');
     
 }).apply(person, ['es', 'en']);
+// Logged: John Doe
+// Arguments: es en
+// -----------
 
 // function borrowing
 var person2 = {
@@ -38,6 +50,7 @@ var person2 = {
 }
 
 console.log(person.getFullName.apply(person2));
+// Jane Doe
 
 // function currying
 function multiply(a, b) {
@@ -46,6 +59,8 @@ function multiply(a, b) {
 
 var multipleByTwo = multiply.bind(this, 2);
 console.log(multipleByTwo(4));
+// 8
 
 var multipleByThree = multiply.bind(this, 3);
 console.log(multipleByThree(4));
+// 12
